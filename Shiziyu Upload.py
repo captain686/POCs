@@ -18,8 +18,7 @@ name = '''
  |_____/|_| |_|_/___|_|\__, |\__,_|
                         __/ |      
                        |___/        
-                                                               
-FOFA语法："/seller.php?s=/Public/login"                                                            
+                                                                                                                
 
 '''
 print(name)
